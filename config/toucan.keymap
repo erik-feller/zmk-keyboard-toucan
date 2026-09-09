@@ -5,24 +5,6 @@
 #include <dt-bindings/zmk/mouse.h>
 #include <dt-bindings/zmk/pointing.h>
 
-/*
- * Ported from the QMK LAYOUT_gergo keymap in config/keymap.c.
- *
- * Layer map:  QMK 0 -> BASE, QMK 1 -> NAV, QMK 2 -> SYM, QMK 3 -> ADJ
- *
- * The Gergo has 50 keys; the Toucan has 42, so the following QMK keys had no
- * physical home and were dropped:
- *   - base:  standalone KC_LCMD (GUI), mouse buttons KC_BTN1/KC_BTN3,
- *            KC_PGDN, TG(3), and the outermost thumb on each side
- *            (MT(MOD_LCTL,KC_DEL) left, KC_ESC right)
- *   - nav:   KC_F6, KC_HOME, KC_F12, KC_CAPS, and the outer-right thumb KC_DEL
- *   - sym:   KC_F6, KC_F12 (the three middle KC_TRNS keys)
- *   - adj:   the middle KC_M
- * QMK reached layer 3 via TG(3); here the tri-layer (NAV + SYM) does it.
- * The ADJ right half was entirely KC_NO in QMK; it now carries BT / output /
- * bootloader / studio-unlock controls so the wireless board stays manageable.
- */
-
 #define BASE 0
 #define NAV  1
 #define SYM  2
@@ -32,8 +14,8 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <NAV SYM>;
-            then-layer = <ADJ>;
+            if-layers = <1 2>;
+            then-layer = <3>;
         };
     };
 
